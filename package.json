@@ -1,0 +1,25 @@
+{
+    "name": "express-sticky-cluster",
+    "version": "0.0.1",
+    "description": "Sticky session balancer based on a cluster and http-proxy module with express.js and socket.io support",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kainpl/express-sticky-cluster.git"
+    },
+    "keywords": [
+        "express.js",
+        "cluster",
+        "http-proxy",
+        "socket.io"
+    ],
+    "author": "Valeriy V. Pushkar <pushkar.valeriy@gmail.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/kainpl/express-sticky-cluster/issues"
+    },
+    "homepage": "https://github.com/kainpl/express-sticky-cluster#readme"
+}

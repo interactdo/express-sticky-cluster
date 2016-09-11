@@ -1,2 +1,2 @@
 # express-sticky-cluster
-Sticky session balancer based on a cluster and http-proxy module with express and socket.io support.
+Sticky session balancer based on a <code>cluster</code> and <code>http-proxy</code> module with <code>express.js</code> and <code>socket.io</code> support
