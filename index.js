@@ -16,8 +16,10 @@ module.exports = function (config, callback) {
     };
 
     var logger = {
-        log: function (level, message) {
-            console[level](message);
+        log: function (level, message, stack) {
+            if(!stack)
+                return console[level](message);
+            return console[level](stack);
         }
     };
 
