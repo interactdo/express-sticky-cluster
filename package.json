@@ -56,7 +56,8 @@
   },
   "dependencies": {
     "http-proxy": "*",
-    "merge": "*"
+    "merge": "*",
+    "cookie": "*"
   },
   "description": "Sticky session balancer based on a cluster and http-proxy module with express.js and socket.io support",
   "devDependencies": {},
