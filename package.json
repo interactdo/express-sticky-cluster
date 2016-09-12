@@ -1,51 +1,4 @@
 {
-  "_args": [
-    [
-      {
-        "raw": "express-sticky-cluster",
-        "scope": null,
-        "escapedName": "express-sticky-cluster",
-        "name": "express-sticky-cluster",
-        "rawSpec": "",
-        "spec": "latest",
-        "type": "tag"
-      }
-    ]
-  ],
-  "_from": "express-sticky-cluster@latest",
-  "_id": "express-sticky-cluster@0.0.1",
-  "_inCache": true,
-  "_installable": true,
-  "_location": "/express-sticky-cluster",
-  "_nodeVersion": "4.5.0",
-  "_npmOperationalInternal": {
-    "host": "packages-12-west.internal.npmjs.com",
-    "tmp": "tmp/express-sticky-cluster-0.0.1.tgz_1473674195362_0.17657953151501715"
-  },
-  "_npmUser": {
-    "name": "kain_pl",
-    "email": "pushkar.valeriy@gmail.com"
-  },
-  "_npmVersion": "3.10.6",
-  "_phantomChildren": {},
-  "_requested": {
-    "raw": "express-sticky-cluster",
-    "scope": null,
-    "escapedName": "express-sticky-cluster",
-    "name": "express-sticky-cluster",
-    "rawSpec": "",
-    "spec": "latest",
-    "type": "tag"
-  },
-  "_requiredBy": [
-    "#USER",
-    "/"
-  ],
-  "_resolved": "https://registry.npmjs.org/express-sticky-cluster/-/express-sticky-cluster-0.0.1.tgz",
-  "_shasum": "671d155887bf4b6b3055989ef65b077c022df890",
-  "_shrinkwrap": null,
-  "_spec": "express-sticky-cluster",
-  "_where": "",
   "author": {
     "name": "Valeriy V. Pushkar",
     "email": "pushkar.valeriy@gmail.com"
@@ -58,7 +11,7 @@
     "merge": "*",
     "cookie": "*"
   },
-  "description": "Sticky session balancer based on a cluster and http-proxy module with express.js and socket.io support",
+  "description": "Sticky session balancer based on a cluster and node-http-proxy modules, with express and socket.io support",
   "devDependencies": {},
   "directories": {},
   "dist": {
@@ -93,5 +46,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "0.0.4"
+  "version": "0.1.0"
 }
