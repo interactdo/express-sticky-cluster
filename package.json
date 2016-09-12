@@ -10,7 +10,7 @@
         "spec": "latest",
         "type": "tag"
       },
-      "D:\\Development\\js\\asteraid-vcm"
+      ""
     ]
   ],
   "_from": "express-sticky-cluster@latest",
@@ -46,7 +46,7 @@
   "_shasum": "671d155887bf4b6b3055989ef65b077c022df890",
   "_shrinkwrap": null,
   "_spec": "express-sticky-cluster",
-  "_where": "D:\\Development\\js\\asteraid-vcm",
+  "_where": "",
   "author": {
     "name": "Valeriy V. Pushkar",
     "email": "pushkar.valeriy@gmail.com"
@@ -72,7 +72,9 @@
     "express.js",
     "cluster",
     "http-proxy",
-    "socket.io"
+    "socket.io",
+    "sticky-cluster",
+    "sticky-sessions"
   ],
   "license": "MIT",
   "main": "index.js",
@@ -84,7 +86,7 @@
   ],
   "name": "express-sticky-cluster",
   "optionalDependencies": {},
-  "readme": "ERROR: No README data found!",
+  "readme": "https://github.com/kainpl/express-sticky-cluster#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kainpl/express-sticky-cluster.git"
