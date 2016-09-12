@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/kainpl/express-sticky-cluster#readme",
   "dependencies": {
-    "http-proxy": "*"
+    "http-proxy": "*",
+    "merge": "*"
   }
 }

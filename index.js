@@ -36,7 +36,7 @@ module.exports = function (config, callback) {
 
     config.workers = config.workers || process.env.WORKERS || require('os').cpus().length;
     config.respawn = config.respawn || true;
-    config.secured = config.secured || false;
+    config.secure = config.secure || false;
     config.socket = config.socket || true;
     config.session_hash = config.session_hash || sessionHash;
     config.session_hash_seed = config.session_hash_seed || ~~(0.5 * 1e9);
