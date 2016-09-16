@@ -12,7 +12,11 @@ module.exports = function (config, callback) {
         stickyCluster = require('./lib/sticky-cluster');
 
     var sessionHash = function (req, res) {
-        return cookie.parse(req.headers.cookie)[config.session_cookie_name];
+        if (!req.headers.cookie)
+            return config.session_cookie_name;
+
+        var cookie_value = cookie.parse(req.headers.cookie)[config.session_cookie_name];
+        return cookie_value ? cookie_value : config.session_cookie_name;
     };
 
     var logger = {
