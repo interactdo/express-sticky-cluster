@@ -10,13 +10,12 @@
     "http-proxy": "*",
     "cookie": "*"
   },
-  "description": "Sticky session balancer based on a cluster and node-http-proxy modules, with express.js and socket.io support",
+  "description": "Sticky session balancer based on a cluster and node-http-proxy modules, with express and socket.io support",
   "devDependencies": {},
   "directories": {},
   "homepage": "https://github.com/kainpl/express-sticky-cluster#readme",
   "keywords": [
     "express",
-    "express.js",
     "cluster",
     "http-proxy",
     "socket.io",
