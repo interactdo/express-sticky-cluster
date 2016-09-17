@@ -5,6 +5,9 @@ Designed for using like <code>[express-cluster](https://github.com/Flipboard/exp
 
 **No memory leaks** from version 1.0.0!
 
+[![NPM](https://nodei.co/npm/express-sticky-cluster.png?downloads=true&stars=true)](https://nodei.co/npm/express-sticky-cluster/)
+[![NPM](https://nodei.co/npm-dl/express-sticky-cluster.png?months=3&height=2)](https://nodei.co/npm/express-sticky-cluster/)
+
 ## How it works
 Launches multiple worker processes through [cluster](https://nodejs.org/api/cluster.html), using bunch of ports.
 One worker process becomes also 'http-proxy', serving as sticky session balancer.
