@@ -8,17 +8,11 @@
   },
   "dependencies": {
     "http-proxy": "*",
-    "merge": "*",
     "cookie": "*"
   },
   "description": "Sticky session balancer based on a cluster and node-http-proxy modules, with express and socket.io support",
   "devDependencies": {},
   "directories": {},
-  "dist": {
-    "shasum": "671d155887bf4b6b3055989ef65b077c022df890",
-    "tarball": "https://registry.npmjs.org/express-sticky-cluster/-/express-sticky-cluster-0.0.1.tgz"
-  },
-  "gitHead": "066bc4d03d2d058ff534be1949120a41d0507464",
   "homepage": "https://github.com/kainpl/express-sticky-cluster#readme",
   "keywords": [
     "express.js",
@@ -45,5 +39,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "0.1.4"
+  "version": "1.0.1"
 }

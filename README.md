@@ -3,6 +3,8 @@ Sticky session balancer based on a <code>[cluster](https://nodejs.org/api/cluste
 
 Designed for using like <code>[express-cluster](https://github.com/Flipboard/express-cluster)</code>.
 
+**No memory leaks** from version 1.0.0!
+
 ## How it works
 Launches multiple worker processes through [cluster](https://nodejs.org/api/cluster.html), using bunch of ports.
 One worker process becomes also 'http-proxy', serving as sticky session balancer.
@@ -11,9 +13,11 @@ Establishes sticky round-robin balancer for any kind of http(s) frameworks. Not 
 Client will always connect to same worker process sticked with customizable hash function.
 For example, [socket.io](http://socket.io/) multi-stage authorization will work as expected. 
 
+**Unused sessions stickers will be deleted after some time, so module does not have memory leaks.**
+
 ## Installation
 ```bash
-npm i express-sticky-cluster [--save]
+npm install express-sticky-cluster [--save]
 ```
 
 ## Usage example
@@ -39,16 +43,27 @@ express_sticky_cluster(
     {
 	    workers: 0,
 	    respawn: true,
-	    secure: true,
 	    socket: true,
-	    session_hash: undefined,
-	    session_cookie_name: 'connect.sid',
-	    delay: 1000,
 	    proxy_port: 443,
-	    worker_port: 8000,
-	    verbose: true,
+        worker_port: 8000,
+        delay: 1000,        	    
+        verbose: true,
+        debug: true,
+        ssl: {
+	        secure: true,
+	        certs: optionsHTTPs
+        },	    
+	    session: {
+            hash: 'connect.sid',
+            ttl: 3600000
+	    },
+	    store: require('express-sticky-cluster/stores/memory-store')({
+	        ttl: 3600000,
+	        repeat: 360000,
+	        debug: true,
+	        logger: undefined
+	    }),
 	    logger: undefined,
-	    ssl: optionsHTTPs,
 	    workerListener: function (message) {}
 	}, function (worker, port) {
 	    console.info('Worker ID#' + worker.id + ' process started PID#' + worker.process.pid);
@@ -185,17 +200,32 @@ module.exports = function (passport, licensing) {
 #### Options
 * **workers** - Number of workers to spawn (default: CPU core count)
 * **respawn** - Respawn process on exit (default: true)
-* **secure** - Create HTTP or HTTPS proxy (default: false means HTTP)
-* **ssl** - TLS certificates data object (default: undefined, if **secure**=true must contain you TLS certificates data)
 * **socket** - Allow WebSocket proxy (default: true)
-* **session_hash** - Function (req, res). Can use cookie-based session ids and etc. (default: if undefined uses cookie-based session id from **session_cookie_name**)
-* **session_cookie_name** - Cookie name from your app (default: if undefined uses 'connect.sid')
-* **delay** - Proxy instance creating delay (default: 1000ms) 
 * **proxy_port** - Proxy listener port (default: if **secure** then 443 else 80)
 * **worker_port** - Workers first port, increased for each worker (for 4 workers it will be use [worker_port, worker_port+1, worker_port+2, worker_port+3]) (default: 8000)
-* **verbose** - Log what happens to **logger** (default: false)
+* **delay** - Proxy instance creating delay (default: 1000ms) 
+* **verbose** - Log what happens (without Proxy debug info) to **logger** (default: true)
+* **debug** - Log Proxy debug info to **logger** (default: false)
+* **ssl**:
+	1. **secure** - Create HTTP or HTTPS proxy (default: false means HTTP)
+	2. **certs** - TLS certificates data object (default: undefined, if **secure**=true must contain you TLS certificates data)
+* **session**:
+	1. **hash** - Function (req, res) or Session cookie name. If function - can use cookie-based session ids and etc. (default: if undefined uses cookie-based session id from cookie 'connect.sid')
+	2. **ttl** - Sessions TTL, uses for **store** configuration (default: 3600000ms)
+* **store** - Storage controller for session stickies (default: memory-store)
 * **logger** - Logger instance where **verbose** output will be forwarded, for example new winston.Logger(...) instance (default: undefined)
 * **workerListener** - Attach the given function to each spawned worker. The function will be bound to the worker that sent the message so you can setup a two way message bus if you want (default: undefined)
+    
+#### Stores
+* **memory-store** - Stores session stickies in memory, can delete unused by ttl stickies.
+* **file-store** - Soon!
+* **redis-store** - Planned
+
+##### memory-store Options
+* **ttl** - Sticky TTL (default: 3600000)
+* **repeat** - Timeout to inspect stickies (default: 360000)
+* **debug** - Log Proxy debug info to **logger** (default: false)
+* **logger** - Logger instance where **verbose** output will be forwarded, for example new winston.Logger(...) instance (default: undefined)
 
 #### Callback function
 * **worker** - current worker instance
