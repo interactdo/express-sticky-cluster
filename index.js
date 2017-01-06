@@ -83,13 +83,12 @@ module.exports = function (options, callback) {
             }
         };
 
-    config.store = (options.store !== undefined && typeof options.store === 'function') ? options.store :
-        require('./stores/memory-store')({
-            ttl: config.session.ttl,
-            repeat: (config.session.ttl / 10) >= 60000 ? (config.session.ttl / 10) : 60000,
-            debug: config.debug,
-            logger: config.logger
-        });
+    config.store = require('./lib/memory-store')({
+        ttl: config.session.ttl,
+        repeat: (config.session.ttl / 60000) < 60 ? 60000 : math.ceil(config.session.ttl / 60000),
+        debug: config.debug,
+        logger: config.logger
+    });
 
     config.workerListener = options.workerListener || undefined;
 

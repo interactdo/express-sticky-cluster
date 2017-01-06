@@ -57,14 +57,8 @@ express_sticky_cluster(
         },	    
 	    session: {
             hash: 'connect.sid',
-            ttl: 3600000
+            ttl: 360000
 	    },
-	    store: require('express-sticky-cluster/stores/memory-store')({
-	        ttl: 3600000,
-	        repeat: 360000,
-	        debug: true,
-	        logger: undefined
-	    }),
 	    logger: undefined,
 	    workerListener: function (message) {}
 	}, function (worker, port) {
@@ -132,7 +126,7 @@ app.use(session({
         path: '/',
         httpOnly: false,
         secure: true,
-        maxAge: 3600000
+        maxAge: 360000
     },
     store: global.sessionStore,
     genid: function (req) {
@@ -214,20 +208,8 @@ module.exports = function (passport, licensing) {
 * **session**:
 	1. **hash** - Function (req, res) or Session cookie name. If function - can use cookie-based session ids and etc. (default: if undefined uses cookie-based session id from cookie 'connect.sid')
 	2. **ttl** - Sessions TTL, uses for **store** configuration (default: 3600000ms)
-* **store** - Storage controller for session stickies (default: memory-store)
 * **logger** - Logger instance where **verbose** output will be forwarded, for example new winston.Logger(...) instance (default: undefined)
 * **workerListener** - Attach the given function to each spawned worker. The function will be bound to the worker that sent the message so you can setup a two way message bus if you want (default: undefined)
-    
-#### Stores
-* **memory-store** - Stores session stickies in memory, can delete unused by ttl stickies.
-* **file-store** - Soon!
-* **redis-store** - Planned
-
-##### memory-store Options
-* **ttl** - Sticky TTL (default: 3600000)
-* **repeat** - Timeout to inspect stickies (default: 360000)
-* **debug** - Log Proxy debug info to **logger** (default: false)
-* **logger** - Logger instance where **verbose** output will be forwarded, for example new winston.Logger(...) instance (default: undefined)
 
 #### Callback function
 * **worker** - current worker instance
