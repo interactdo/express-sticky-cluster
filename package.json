@@ -7,8 +7,9 @@
     "url": "https://github.com/kainpl/express-sticky-cluster/issues"
   },
   "dependencies": {
+    "cookie-parser": "*",
     "http-proxy": "*",
-    "cookie": "*"
+    "uuid": "*"
   },
   "description": "Sticky session balancer based on a cluster and node-http-proxy modules, with express and socket.io support",
   "devDependencies": {},
@@ -39,5 +40,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "1.1.2"
+  "version": "1.1.3"
 }

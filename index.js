@@ -6,8 +6,9 @@ module.exports = function (options, callback) {
         options = {};
     }
 
-    var cookie = require('cookie'),
-        cluster = require('cluster');
+    var cookieParser = require('cookie-parser'),
+        cluster = require('cluster'),
+        uuid_v4 = require('uuid/v4');
     var stickyCluster = require('./lib/sticky-cluster');
 
     var config = {
@@ -56,9 +57,9 @@ module.exports = function (options, callback) {
 
     var hashFn = function (req, res) {
         if (!req.headers.cookie)
-            return config.session.hash;
-        var cookie_value = cookie.parse(req.headers.cookie)[config.session.hash];
-        return cookie_value ? cookie_value : config.session.hash;
+            return uuid_v4();
+        var session = cookieParser.JSONCookie(req.headers.cookie)[config.session.hash];
+        return session ? session : uuid_v4();
     };
     if (options.session !== undefined) {
         if (options.session.hash !== undefined)
