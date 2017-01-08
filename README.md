@@ -200,7 +200,6 @@ module.exports = function (passport, licensing) {
 * **proxy_port** - Proxy listener port (default: if **secure** then 443 else 80)
 * **worker_port** - Workers first port, increased for each worker (for 4 workers it will be use [worker_port, worker_port+1, worker_port+2, worker_port+3]) (default: 8000)
 * **delay** - Proxy instance creating delay (default: 1000ms) 
-* **verbose** - Log what happens (without Proxy debug info) to **logger** (default: true)
 * **debug** - Log Proxy debug info to **logger** (default: false)
 * **ssl**:
 	1. **secure** - Create HTTP or HTTPS proxy (default: false means HTTP)
@@ -208,7 +207,7 @@ module.exports = function (passport, licensing) {
 * **session**:
 	1. **hash** - Function (req, res) or Session cookie name. If function - can use cookie-based session ids and etc. (default: if undefined uses cookie-based session id from cookie 'connect.sid')
 	2. **ttl** - Sessions TTL, uses for **store** configuration (default: 3600000ms)
-* **logger** - Logger instance where **verbose** output will be forwarded, for example new winston.Logger(...) instance (default: undefined)
+* **logger** - Logger instance, for example new winston.Logger(...) instance (default: undefined)
 * **workerListener** - Attach the given function to each spawned worker. The function will be bound to the worker that sent the message so you can setup a two way message bus if you want (default: undefined)
 
 #### Callback function

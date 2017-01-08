@@ -17,7 +17,6 @@ module.exports = function (options, callback) {
         proxy_port: undefined,
         worker_port: undefined,
         delay: undefined,
-        verbose: undefined,
         debug: undefined,
         ssl: {
             secure: undefined,
@@ -43,7 +42,6 @@ module.exports = function (options, callback) {
     config.worker_port = options.worker_port || 8000;
     config.delay = options.delay || 1000;
 
-    config.verbose = options.verbose || true;
     config.debug = options.debug || false;
 
     if (options.ssl !== undefined) {
