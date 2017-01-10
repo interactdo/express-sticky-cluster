@@ -30,7 +30,8 @@ npm install express-sticky-cluster [--save]
 var app = require('../worker'),
     debug = require('debug')('example-app:server'),
     https = require('https'),
-    fs = require('fs');
+    fs = require('fs'),
+    ipfilter = require('express-ipfilter').IpFilter;
 var express_sticky_cluster = require('express-sticky-cluster');
 
 var optionsHTTPs = {
@@ -49,12 +50,12 @@ express_sticky_cluster(
 	    proxy_port: 443,
         worker_port: 8000,
         delay: 1000,        	    
-        verbose: true,
         debug: true,
         ssl: {
 	        secure: true,
 	        certs: optionsHTTPs
-        },	    
+        },	  
+        ipfilter: ipfilter(['127.0.0.1', ['192.168.0.1', '192.168.0.200']], {mode: allow, log: false}),
 	    session: {
             hash: 'connect.sid',
             ttl: 360000
@@ -204,6 +205,7 @@ module.exports = function (passport, licensing) {
 * **ssl**:
 	1. **secure** - Create HTTP or HTTPS proxy (default: false means HTTP)
 	2. **certs** - TLS certificates data object (default: undefined, if **secure**=true must contain you TLS certificates data)
+* **ipfilter** - IP-filter function, for details see [express-ipfilter](https://www.npmjs.com/package/express-ipfilter) (default: undefined)
 * **session**:
 	1. **hash** - Function (req, res) or Session cookie name. If function - can use cookie-based session ids and etc. (default: if undefined uses cookie-based session id from cookie 'connect.sid')
 	2. **ttl** - Sessions TTL, uses for **store** configuration (default: 3600000ms)

@@ -26,6 +26,7 @@ module.exports = function (options, callback) {
                 cert: undefined
             }
         },
+        ipfilter: undefined,
         session: {
             hash: undefined,
             hashFn: undefined,
@@ -83,6 +84,11 @@ module.exports = function (options, callback) {
         config.session.hashFn = hashFn;
         config.session.ttl = 3600000;
     }
+
+    var ipfilterFn = function (req, res, next) {
+        return next();
+    };
+    config.ipfilter = options.ipfilter || ipfilterFn;
 
     config.logger = options.logger || {
             log: function (level, message, stack) {
