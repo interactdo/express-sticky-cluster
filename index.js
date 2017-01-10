@@ -37,6 +37,9 @@ module.exports = function (options, callback) {
     };
 
     config.workers = options.workers || require('os').cpus().length;
+    if (config.workers % 2 === 0)
+        config.workers = --config.workers;
+
     config.respawn = options.respawn || true;
     config.socket = options.socket || true;
     config.proxy_port = options.proxy_port || (config.ssl.secure ? 443 : 80);
