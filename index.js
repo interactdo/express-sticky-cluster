@@ -6,7 +6,7 @@ module.exports = function (options, callback) {
         options = {};
     }
 
-    var cookieParser = require('cookie-parser'),
+    var cookie = require('cookie'),
         cluster = require('cluster'),
         uuid_v4 = require('uuid/v4');
     var stickyCluster = require('./lib/sticky-cluster');
@@ -58,7 +58,7 @@ module.exports = function (options, callback) {
     var hashFn = function (req, res) {
         if (!req.headers.cookie)
             return uuid_v4();
-        var session = cookieParser.JSONCookie(req.headers.cookie)[config.session.hash];
+        var session = cookie.parse(req.headers.cookie)[config.session.hash];
         return session ? session : uuid_v4();
     };
     if (options.session !== undefined) {
