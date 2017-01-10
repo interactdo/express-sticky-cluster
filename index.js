@@ -58,8 +58,15 @@ module.exports = function (options, callback) {
     var hashFn = function (req, res) {
         if (!req.headers.cookie)
             return uuid_v4();
+
         var session = cookie.parse(req.headers.cookie)[config.session.hash];
-        return session ? session : uuid_v4();
+        if (session)
+            return session;
+
+        session = uuid_v4();
+        res.setHeader('Set-Cookie', config.session.hash + '=' + session);
+
+        return session;
     };
     if (options.session !== undefined) {
         if (options.session.hash !== undefined)
