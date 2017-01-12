@@ -7,8 +7,7 @@ module.exports = function (options, callback) {
     }
 
     var cookie = require('cookie'),
-        cluster = require('cluster'),
-        uuid_v4 = require('uuid/v4');
+        cluster = require('cluster');
     var stickyCluster = require('./lib/sticky-cluster');
 
     var config = {
@@ -38,9 +37,6 @@ module.exports = function (options, callback) {
     };
 
     config.workers = options.workers || require('os').cpus().length;
-    if (config.workers % 2 === 0)
-        config.workers = --config.workers;
-
     config.respawn = options.respawn || true;
     config.socket = options.socket || true;
     config.proxy_port = options.proxy_port || (config.ssl.secure ? 443 : 80);
@@ -61,16 +57,9 @@ module.exports = function (options, callback) {
 
     var hashFn = function (req, res) {
         if (!req.headers.cookie)
-            return uuid_v4();
+            return config.session.hash;
 
-        var session = cookie.parse(req.headers.cookie)[config.session.hash];
-        if (session)
-            return session;
-
-        session = uuid_v4();
-        res.setHeader('Set-Cookie', config.session.hash + '=' + session);
-
-        return session;
+        return cookie.parse(req.headers.cookie)[config.session.hash] || config.session.hash;
     };
     if (options.session !== undefined) {
         if (options.session.hash !== undefined)

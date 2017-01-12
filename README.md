@@ -195,7 +195,7 @@ module.exports = function (passport, licensing) {
 ```
 
 #### Options
-* **workers** - Number of workers to spawn (if even number, decrements)(default: CPU core count-1 OR odd workers number, for better round-robin balancing)
+* **workers** - Number of workers to spawn (default: CPU core count)
 * **respawn** - Respawn process on exit (default: true)
 * **socket** - Allow WebSocket proxy (default: true)
 * **proxy_port** - Proxy listener port (default: if **secure** then 443 else 80)
