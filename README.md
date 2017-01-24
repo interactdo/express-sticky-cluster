@@ -122,7 +122,7 @@ app.use(session({
     name: 'connect.sid',
     resave: true,
     rolling: true,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: {
         path: '/',
         httpOnly: false,
