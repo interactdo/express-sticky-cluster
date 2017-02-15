@@ -55,7 +55,7 @@ express_sticky_cluster(
 	        secure: true,
 	        certs: optionsHTTPs
         },	  
-        ipfilter: ipfilter(['127.0.0.1', ['192.168.0.1', '192.168.0.200']], {mode: allow, log: false}),
+        ipfilter: ipfilter(['127.0.0.1', ['192.168.0.1', '192.168.0.200']], {mode: 'allow', log: false}),
 	    session: {
             hash: 'connect.sid',
             ttl: 360000
